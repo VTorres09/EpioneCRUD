@@ -8,9 +8,11 @@
 
 <h2>Editar Registro</h2>
   <% data.forEach(function(details) { %>
-    <form action="/edit/<%= details._id %>" method="POST">
-      <input type="text" value="<%= details.name %>" name="name">
-      <input type="text" value="<%= details.surname %>" name="surname">
+    <form action="/edit/<%= details.id %>" method="POST">
+      <input type="text" value="<%= details.first_name %>" name="first_name">
+      <input type="text" value="<%= details.last_name %>" name="last_name">
+      <input type="email" value="<%= details.email %>" name="email">
+      <input type="password" value="<%= details.password %>" name="password">
       <br />
       <button><a href="/show">Todos</a></button>
       <button type="submit">Editar</button>
