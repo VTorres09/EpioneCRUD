@@ -41,6 +41,20 @@ User.findById = function (id, result) {
     });   
 };
 
+// Procura um usuário no banco pelo email
+User.findByEmail = function (userEmail, userPassword, result) {
+    dbConn.query("Select * from users where email=? and password=? ", [userEmail, userPassword], function (err, res) {             
+        if(err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else{
+            console.log(res)
+            result(null, res);
+        }
+    });   
+};
+
 // Retorna todos os usuarios
 User.findAll = function (result) {
     dbConn.query("Select * from users", function (err, res) {
@@ -56,8 +70,8 @@ User.findAll = function (result) {
 };
 
 // Modifica campos de um usuario especificado pelo id
-User.update = function(id, employee, result){
-  dbConn.query("UPDATE users SET first_name=?, last_name=?,email=?,password=? WHERE id = ?", [employee.first_name,employee.last_name,employee.email,employee.password,id], function (err, res) {
+User.update = function(id, user, result){
+  dbConn.query("UPDATE users SET first_name=?, last_name=?,email=?,password=? WHERE id = ?", [user.first_name,user.last_name,user.email,user.password,id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
